@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EpamCourse.Development_and_Build_Tools;
 
 namespace EpamCourse
 {
-    internal class MainClass
+    public class MainClass
     {
+        public static void Main()
+        {
+            string input = Console.ReadLine();
+            int maxNumbers = new NonidenticalCharactersCouner(input).GetMaxNumber();
+            Console.WriteLine(maxNumbers);
+        }
     }
 }
