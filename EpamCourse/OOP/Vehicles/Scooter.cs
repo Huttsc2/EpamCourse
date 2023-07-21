@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace EpamCourse.OOP
 {
-    internal class Scooter
+    public class Scooter : Vehicle
     {
+        public bool HasPedals { get; set; }
+
+        public override void PrintInfo()
+        {
+            base.PrintInfo();
+            Console.WriteLine($"Has Pedals: {HasPedals}");
+        }
     }
 }

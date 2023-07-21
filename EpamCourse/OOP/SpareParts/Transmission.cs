@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace EpamCourse.OOP
 {
-    internal class Transmission
+    public class Transmission
     {
+        public string Type { get; set; }
+        public int GearCount { get; set; }
+        public string Manufacturer { get; set; }
     }
 }

@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace EpamCourse.OOP
 {
-    internal class Truck
+    public class Truck : Vehicle
     {
+        public int CargoCapacity { get; set; }
+
+        public override void PrintInfo()
+        {
+            base.PrintInfo();
+            Console.WriteLine($"Cargo Capacity: {CargoCapacity} kg");
+        }
     }
 }
