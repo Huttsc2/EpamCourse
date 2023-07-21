@@ -2,9 +2,9 @@
 {
     public class NonidenticalCharactersCouner
     {
-        public string InputString { get; set; }
-        public int MaxNumberOfNonidenticalCharacters { get; set; }
-        public bool IsCorrectInput { get; set; }
+        private string InputString { get; set; }
+        private int MaxNumberOfNonidenticalCharacters { get; set; }
+        private bool IsCorrectInput { get; set; }
 
         public NonidenticalCharactersCouner(string input)
         {
@@ -20,24 +20,22 @@
             }
         }
 
-        public void CheckConditions()
+        private void CheckConditions()
         {
-            IsCorrectInput = !CheckNull() && !CheckEmpty();
+            IsCorrectInput = CheckNull() && CheckEmpty();
         }
 
-        public bool CheckNull()
+        private bool CheckNull()
         {
-            return InputString == null;
+            return InputString != null;
         }
 
-        public bool CheckEmpty()
+        private bool CheckEmpty()
         {
-            return InputString.Length == 0;
+            return InputString.Length != 0;
         }
 
-
-
-        public void CountMaxNumberOfUniqueCharacters()
+        private void CountMaxNumberOfUniqueCharacters()
         {
             MaxNumberOfNonidenticalCharacters = 1;
             int currentDistinctCount = 1;
