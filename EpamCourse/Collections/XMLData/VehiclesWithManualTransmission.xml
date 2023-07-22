@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfVehicle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Vehicle xsi:type="Truck">
+    <Engine>
+      <Power>400</Power>
+      <Volume>5000</Volume>
+      <Type>Diesel</Type>
+      <SerialNumber>SN9876</SerialNumber>
+    </Engine>
+    <Chassis>
+      <WheelCount>6</WheelCount>
+      <Number>CH9876</Number>
+      <MaxLoad>20000</MaxLoad>
+    </Chassis>
+    <Transmission>
+      <Type>Manual</Type>
+      <GearCount>6</GearCount>
+      <Manufacturer>ZF</Manufacturer>
+    </Transmission>
+    <CargoCapacity>10000</CargoCapacity>
+  </Vehicle>
+</ArrayOfVehicle>

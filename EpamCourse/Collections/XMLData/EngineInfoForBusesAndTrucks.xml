@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEngineInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EngineInfo>
+    <EngineType>Diesel</EngineType>
+    <SerialNumber>SN1234</SerialNumber>
+    <Power>500</Power>
+  </EngineInfo>
+  <EngineInfo>
+    <EngineType>Diesel</EngineType>
+    <SerialNumber>SN9876</SerialNumber>
+    <Power>400</Power>
+  </EngineInfo>
+</ArrayOfEngineInfo>

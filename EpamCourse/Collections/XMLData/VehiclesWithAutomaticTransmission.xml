@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfVehicle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Vehicle xsi:type="Car">
+    <Engine>
+      <Power>120</Power>
+      <Volume>2000</Volume>
+      <Type>Petrol</Type>
+      <SerialNumber>SN12345</SerialNumber>
+    </Engine>
+    <Chassis>
+      <WheelCount>4</WheelCount>
+      <Number>CH123</Number>
+      <MaxLoad>1500</MaxLoad>
+    </Chassis>
+    <Transmission>
+      <Type>Automatic</Type>
+      <GearCount>5</GearCount>
+      <Manufacturer>ZF</Manufacturer>
+    </Transmission>
+    <CarType>Sedan</CarType>
+  </Vehicle>
+  <Vehicle xsi:type="Bus">
+    <Engine>
+      <Power>500</Power>
+      <Volume>2000</Volume>
+      <Type>Diesel</Type>
+      <SerialNumber>SN1234</SerialNumber>
+    </Engine>
+    <Chassis>
+      <WheelCount>6</WheelCount>
+      <Number>CH1234</Number>
+      <MaxLoad>10000</MaxLoad>
+    </Chassis>
+    <Transmission>
+      <Type>Automatic</Type>
+      <GearCount>8</GearCount>
+      <Manufacturer>Allison</Manufacturer>
+    </Transmission>
+    <PassengerCapacity>40</PassengerCapacity>
+  </Vehicle>
+  <Vehicle xsi:type="Scooter">
+    <Engine>
+      <Power>15</Power>
+      <Volume>50</Volume>
+      <Type>Gasoline</Type>
+      <SerialNumber>SN5678</SerialNumber>
+    </Engine>
+    <Chassis>
+      <WheelCount>2</WheelCount>
+      <Number>CH5678</Number>
+      <MaxLoad>150</MaxLoad>
+    </Chassis>
+    <Transmission>
+      <Type>Automatic</Type>
+      <GearCount>0</GearCount>
+      <Manufacturer>Generic</Manufacturer>
+    </Transmission>
+    <HasPedals>false</HasPedals>
+  </Vehicle>
+</ArrayOfVehicle>

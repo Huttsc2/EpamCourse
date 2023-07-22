@@ -1,6 +1,13 @@
 ﻿
+using System.Xml.Serialization;
+
 namespace EpamCourse.OOP
 {
+
+    [XmlInclude(typeof(Car))]
+    [XmlInclude(typeof(Bus))]
+    [XmlInclude(typeof(Truck))]
+    [XmlInclude(typeof(Scooter))]
     public abstract class Vehicle
     {
         public Engine Engine { get; set; }
