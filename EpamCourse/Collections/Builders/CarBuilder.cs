@@ -1,4 +1,6 @@
-﻿using EpamCourse.OOP;
+﻿using EpamCourse.Exceptions.CarModels;
+using EpamCourse.Exceptions.Checkers;
+using EpamCourse.OOP;
 
 namespace EpamCourse.Collections.Builders
 {
@@ -6,7 +8,14 @@ namespace EpamCourse.Collections.Builders
     {
         public CarBuilder()
         {
-            _vehicle = new Car();
+            try
+            {
+                _vehicle = new Car();
+            }
+            catch
+            {
+                _vehicle = null;
+            }
         }
 
         public override VehicleBuilder SetEngine(int power, int volume, string type, string serialNumber)
@@ -27,9 +36,12 @@ namespace EpamCourse.Collections.Builders
             return this;
         }
 
-        public CarBuilder SetCarType(string carType)
+        public CarBuilder SetCarModel(CarModel carModel)
         {
-            ((Car)_vehicle).CarType = carType;
+            new CarsBrandsChecker(carModel).CheckValidCarBrand();
+            new CarsModelChecker(carModel).CheckValidCarModel();
+            
+            ((Car)_vehicle).CarModel = carModel;
             return this;
         }
     }

@@ -17,7 +17,10 @@
       <GearCount>5</GearCount>
       <Manufacturer>ZF</Manufacturer>
     </Transmission>
-    <CarType>Sedan</CarType>
+    <CarModel>
+      <Make>Mercedes-Benz</Make>
+      <Model>A-Class</Model>
+    </CarModel>
   </Vehicle>
   <Vehicle xsi:type="Bus">
     <Engine>

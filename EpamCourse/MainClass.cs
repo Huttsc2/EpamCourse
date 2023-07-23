@@ -3,6 +3,7 @@ using EpamCourse.Basic_of_dotnet_Framework_and_CSharp;
 using EpamCourse.OOP;
 using EpamCourse.Collections.Builders;
 using EpamCourse.Collections.XMLWriters;
+using EpamCourse.Exceptions.CarModels;
 
 namespace EpamCourse
 {
@@ -11,19 +12,30 @@ namespace EpamCourse
 
         public static void Main()
         {
-            Car? car = new CarBuilder()
-                .SetCarType("Sedan")
+            List<Vehicle> vehicles = new List<Vehicle>();
+
+            try
+            {
+                Car? car = new CarBuilder()
+                .SetCarModel(new CarModel("Mercedes-Benz", "A-Class"))
                 .SetEngine(120, 2000, "Petrol", "SN12345")
                 .SetChassis(4, "CH123", 1500)
                 .SetTransmission("Automatic", 5, "ZF")
                 .Build() as Car;
-
+                vehicles.Add(car);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
             Bus? bus = new BusBuilder()
                 .SetPassengerCapacity(40)
                 .SetEngine(500, 2000, "Diesel", "SN1234")
                 .SetChassis(6, "CH1234", 10000)
                 .SetTransmission("Automatic", 8, "Allison")
                 .Build() as Bus;
+            vehicles.Add(bus);
 
             Scooter? scooter = new ScooterBuilder()
                 .SetHasPedal(false)
@@ -31,6 +43,7 @@ namespace EpamCourse
                 .SetChassis(2, "CH5678", 150)
                 .SetTransmission("Automatic", 0, "Generic")
                 .Build() as Scooter;
+            vehicles.Add(scooter);
 
             Truck? truck = new TruckBuilder()
                 .SetCargoCapacity(10000)
@@ -38,11 +51,14 @@ namespace EpamCourse
                 .SetChassis(6, "CH9876", 20000)
                 .SetTransmission("Manual", 6, "ZF")
                 .Build() as Truck;
+            vehicles.Add(truck);
 
-            List<Vehicle> vehicles = new List<Vehicle>
+            foreach (var vehicle in vehicles)
             {
-                car, bus, scooter, truck
-            };
+                vehicle.PrintInfo();
+                Console.WriteLine();
+            }
+
 
             new VehiclesWriter().WriteVehiclesWithEngineVolumeOver1_5(vehicles);
             new VehiclesWriter().WriteVehiclesGroupedByTransmissionType(vehicles);
