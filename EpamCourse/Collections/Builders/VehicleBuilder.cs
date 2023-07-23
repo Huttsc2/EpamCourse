@@ -6,6 +6,12 @@ namespace EpamCourse.Collections.Builders
     {
         protected Vehicle _vehicle;
 
+        public virtual VehicleBuilder SetId(int id)
+        {
+            _vehicle.Id = id;
+            return this;
+        }
+
         public abstract VehicleBuilder SetEngine(int power, int volume, string type, string serialNumber);
 
         public abstract VehicleBuilder SetChassis(int wheelCount, string number, int maxLoad);

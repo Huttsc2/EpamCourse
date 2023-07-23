@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfVehicle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Vehicle xsi:type="Truck">
+    <Id>4</Id>
     <Engine>
       <Power>400</Power>
       <Volume>5000</Volume>

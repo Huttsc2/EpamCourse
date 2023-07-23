@@ -21,6 +21,7 @@ namespace EpamCourse
                 .SetEngine(120, 2000, "Petrol", "SN12345")
                 .SetChassis(4, "CH123", 1500)
                 .SetTransmission("Automatic", 5, "ZF")
+                .SetId(1)
                 .Build() as Car;
                 vehicles.Add(car);
             }
@@ -34,6 +35,7 @@ namespace EpamCourse
                 .SetEngine(500, 2000, "Diesel", "SN1234")
                 .SetChassis(6, "CH1234", 10000)
                 .SetTransmission("Automatic", 8, "Allison")
+                .SetId(2)
                 .Build() as Bus;
             vehicles.Add(bus);
 
@@ -42,6 +44,7 @@ namespace EpamCourse
                 .SetEngine(15, 50, "Gasoline", "SN5678")
                 .SetChassis(2, "CH5678", 150)
                 .SetTransmission("Automatic", 0, "Generic")
+                .SetId(3)
                 .Build() as Scooter;
             vehicles.Add(scooter);
 
@@ -50,6 +53,7 @@ namespace EpamCourse
                 .SetEngine(400, 5000, "Diesel", "SN9876")
                 .SetChassis(6, "CH9876", 20000)
                 .SetTransmission("Manual", 6, "ZF")
+                .SetId(4)
                 .Build() as Truck;
             vehicles.Add(truck);
 
