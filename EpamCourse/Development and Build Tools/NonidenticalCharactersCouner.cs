@@ -2,9 +2,9 @@
 {
     public class NonidenticalCharactersCouner
     {
-        private string InputString { get; set; }
+        protected string InputString { get; set; }
         private int MaxNumberOfNonidenticalCharacters { get; set; }
-        private bool IsCorrectInput { get; set; }
+        protected bool IsCorrectInput { get; set; }
 
         public NonidenticalCharactersCouner(string input)
         {
@@ -20,7 +20,7 @@
             }
         }
 
-        private void CheckConditions()
+        protected void CheckConditions()
         {
             IsCorrectInput = CheckNull() && CheckEmpty();
         }
@@ -61,6 +61,5 @@
         {
             return MaxNumberOfNonidenticalCharacters;
         }
-
     }
 }

@@ -13,10 +13,7 @@ namespace EpamCourse
     {
         public static void Main()
         {
-            PerformingClass performing = new PerformingClass();
-            performing.AddCarsFromConsoleInput();
-            //performing.AddPredefinedCars();
-            performing.ExecuteCommand();
+            
         }
     }
 }
