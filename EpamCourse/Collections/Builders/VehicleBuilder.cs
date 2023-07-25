@@ -4,11 +4,23 @@ namespace EpamCourse.Collections.Builders
 {
     public abstract class VehicleBuilder
     {
-        protected Vehicle _vehicle;
+        protected Vehicle? _vehicle;
 
         public virtual VehicleBuilder SetId(int id)
         {
             _vehicle.Id = id;
+            return this;
+        }
+
+        public virtual VehicleBuilder SetAmount(int amount)
+        {
+            _vehicle.Amount = amount;
+            return this;
+        }
+
+        public virtual VehicleBuilder SetCost(decimal cost)
+        {
+            _vehicle.Cost = cost;
             return this;
         }
 

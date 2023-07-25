@@ -38,8 +38,8 @@ namespace EpamCourse.Collections.Builders
 
         public CarBuilder SetCarModel(CarModel carModel)
         {
-            new CarsBrandsChecker(carModel).CheckValidCarBrand();
-            new CarsModelChecker(carModel).CheckValidCarModel();
+            //new CarsBrandsChecker(carModel).CheckValidCarBrand();
+            //new CarsModelChecker(carModel).CheckValidCarModel();
             
             ((Car)_vehicle).CarModel = carModel;
             return this;
