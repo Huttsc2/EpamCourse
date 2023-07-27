@@ -13,7 +13,7 @@ namespace EpamCourse
     {
         public static void Main()
         {
-            
+
         }
     }
 }

@@ -9,6 +9,21 @@
 
   <ItemGroup>
     <Folder Include="Collections\XMLData\" />
+    <Folder Include="Webdriver\Steps\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+    <PackageReference Include="FluentAssertions" Version="6.11.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.10.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="115.0.5790.10200" />
   </ItemGroup>
 
 </Project>
