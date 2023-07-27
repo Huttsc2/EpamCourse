@@ -143,7 +143,7 @@ namespace EpamCourseTests.Webdriver_Tests
         }
 
         [TestMethod]
-        public void SendLetter()
+        public void SendLetterAndReply()
         {
             WebPages webPages = new WebPages();
             SoftAssertions softAssertions = new SoftAssertions();
@@ -202,8 +202,6 @@ namespace EpamCourseTests.Webdriver_Tests
             webPages.GmailMailPage.ReplyButton.Click();
             webPages.GmailMailPage.MessageArea.SendKey(messageFromGoogle);
             webPages.GmailMailPage.SendMessageButton.Click();
-            webPages.YandexMailPage.Open();
-            Browser.GetInstance().AlertAccept();
         }
     }
 }
