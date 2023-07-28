@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EpamCourse.Webdriver.PageElement;
+﻿using EpamCourse.Webdriver.PageElement;
 
 namespace EpamCourse.Webdriver.Pages.YandexMail.YandexPassportPage
 {
@@ -15,5 +10,8 @@ namespace EpamCourse.Webdriver.Pages.YandexMail.YandexPassportPage
         public WebElement CurrentAccountButton = new(isHidden: false, "//a[contains(@class, 'CurrentAccount')]");
         public WebElement AddAccountButton = new(isHidden: false, "//span[@class='AddAccountButton-icon']");
         public WebElement AlertArea = new(isHidden: false, "//div[@aria-live='polite']");
+        public WebElement ClearNameButton = new(isHidden: false, "//span[contains(@class,'Clear Textinput-')]");
+        public WebElement NewNameArea = new(isHidden: false, "//input[@type='text']");
+        public WebElement SaveNewNameButton = new(isHidden: false, "//button[@type='submit']");
     }
 }

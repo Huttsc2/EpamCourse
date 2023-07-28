@@ -6,6 +6,7 @@ using EpamCourse.Collections.XMLWriters;
 using EpamCourse.Exceptions.CarModels;
 using EpamCourse.Object_Oriented_Design_Principles;
 using PerformingClass = EpamCourse.Object_Oriented_Design_Principles.PerformingClass;
+using EpamCourse.Webdriver.UserData;
 
 namespace EpamCourse
 {
@@ -13,7 +14,6 @@ namespace EpamCourse
     {
         public static void Main()
         {
-
         }
     }
 }

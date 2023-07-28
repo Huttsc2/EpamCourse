@@ -1,5 +1,4 @@
 ﻿using EpamCourse.Webdriver.Driver;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
 namespace EpamCourse.Webdriver.PageElement
@@ -10,7 +9,7 @@ namespace EpamCourse.Webdriver.PageElement
         private IWebElement? Element { get; set; }
         private string XPath { get; set; }
         private bool IsHidden { get; set; }
-        private int TimeoutInSec = 30;
+        private int TimeoutInSec = 60;
         private bool ReloadObject = true;
 
         public WebElement(bool isHidden, string xpath)
@@ -27,14 +26,14 @@ namespace EpamCourse.Webdriver.PageElement
 
         public void Click()
         {
-            CheckCondition(TimeoutInSec);
+            CheckCondition();
             CheckNull();
             Element.Click();
         }
 
         public void SendKey(string data)
         {
-            CheckCondition(TimeoutInSec);
+            CheckCondition();
             CheckNull();
             Element.SendKeys(data);
         }
@@ -42,12 +41,12 @@ namespace EpamCourse.Webdriver.PageElement
 
         public string GetText()
         {
-            CheckCondition(TimeoutInSec);
+            CheckCondition();
             CheckNull();
             return Element.Text;
         }
 
-        private void CheckCondition(int timeoutInSec)
+        private void CheckCondition()
         {
             if (!ReloadObject)
             {
@@ -55,11 +54,11 @@ namespace EpamCourse.Webdriver.PageElement
             }
             if (!IsHidden)
             {
-                Element = Browser.FindClickableElement(XPath, timeoutInSec);
+                Element = Browser.FindClickableElement(XPath, TimeoutInSec);
             } 
             else if (IsHidden)
             {
-                Element = Browser.FindHiddenElement(XPath);
+                Element = Browser.FindHiddenElement(XPath, TimeoutInSec);
             }
             else
             {

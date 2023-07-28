@@ -1,5 +1,6 @@
 ﻿using EpamCourse.Webdriver.Pages.YandexMail;
 using EpamCourse.Webdriver.Pages.YandexMail.YandexPassportPage;
+using EpamCourse.Webdriver.Pages.YandexMail.YandexIdPage;
 using EpamCourse.Webdriver.Pages.YandexMail.YandexPassportPage.YandexMailPage;
 using EpamCourse.Webdriver.Pages.GMail;
 using EpamCourse.Webdriver.Pages.GMail.GmailPassportPage;
@@ -26,6 +27,16 @@ public class WebPages
             YandexPassportPage yandexPassportPage = new();
             yandexPassportPage.SetUrl("https://passport.yandex.ru/");
             return yandexPassportPage;
+        }
+    }
+
+    public YandexIdPage YandexIdPage
+    {
+        get
+        {
+            YandexIdPage yandexIdPage = new();
+            yandexIdPage.SetUrl("https://id.yandex.ru/");
+            return yandexIdPage;
         }
     }
 

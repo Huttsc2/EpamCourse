@@ -18,7 +18,7 @@ namespace EpamCourse.Webdriver.PageElement
         }
         public List<WebElement> ConvertToListCollection()
         {
-            Elements = Browser.FindVivsibleElements(XPath);
+            Elements = Browser.FindVivsibleElements(XPath, 60);
             List<WebElement> newCollectioon = new();
             foreach (IWebElement element in Elements)
             {

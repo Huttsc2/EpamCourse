@@ -60,10 +60,10 @@ namespace EpamCourse.Webdriver.Driver
             return element;
         }
 
-        public List<IWebElement> FindClickableElements(string xpath)
+        public List<IWebElement> FindClickableElements(string xpath, int timeoutInSecond)
         {
 
-            List<IWebElement>? visibleElements = FindVivsibleElements(xpath);
+            List<IWebElement>? visibleElements = FindVivsibleElements(xpath, timeoutInSecond);
             List<IWebElement> clickableElements = new();
             foreach (IWebElement element in visibleElements)
             {
@@ -75,9 +75,9 @@ namespace EpamCourse.Webdriver.Driver
             return clickableElements;
         }
 
-        public IWebElement? FindVisibleElement(string xpath)
+        public IWebElement? FindVisibleElement(string xpath, int timeoutInSecond)
         {
-            IWait<IWebDriver> fluentWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30))
+            IWait<IWebDriver> fluentWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeoutInSecond))
             {
                 PollingInterval = TimeSpan.FromMilliseconds(50),
             };
@@ -94,9 +94,9 @@ namespace EpamCourse.Webdriver.Driver
             return element;
         }
 
-        public List<IWebElement>? FindVivsibleElements(string xpath)
+        public List<IWebElement>? FindVivsibleElements(string xpath, int timeoutInSecond)
         {
-            IWait<IWebDriver> fluentWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30))
+            IWait<IWebDriver> fluentWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeoutInSecond))
             {
                 PollingInterval = TimeSpan.FromMilliseconds(50),
             };
@@ -121,9 +121,9 @@ namespace EpamCourse.Webdriver.Driver
             alert.Accept();
         }
 
-        public IWebElement? FindHiddenElement(string xpath)
+        public IWebElement? FindHiddenElement(string xpath, int timeoutInSecond)
         {
-            IWait<IWebDriver> fluentWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30))
+            IWait<IWebDriver> fluentWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeoutInSecond))
             {
                 PollingInterval = TimeSpan.FromMilliseconds(50),
             };
@@ -140,9 +140,9 @@ namespace EpamCourse.Webdriver.Driver
             return element;
         }
 
-        public List<IWebElement>? FindHiddenElements(string xpath)
+        public List<IWebElement>? FindHiddenElements(string xpath, int timeoutInSecond)
         {
-            IWait<IWebDriver> fluentWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30))
+            IWait<IWebDriver> fluentWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeoutInSecond))
             {
                 PollingInterval = TimeSpan.FromMilliseconds(50),
             };
