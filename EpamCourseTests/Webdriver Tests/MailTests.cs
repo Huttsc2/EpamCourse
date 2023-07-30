@@ -20,7 +20,7 @@ namespace EpamCourseTests.Webdriver_Tests
         [TestCleanup]
         public void CleanUp()
         {
-            //Browser.GetInstance().Quit();
+            Browser.GetInstance().Quit();
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace EpamCourseTests.Webdriver_Tests
             webPages.YandexMainPage.UserPicButton.Click();
 
             string actualLogin = webPages.YandexMainPage.UserName.GetText();
-            string expectionLogin = users.YandexMailData.Name;
+            string expectionLogin = users.YandexMailData.Username;
             softAssertions.Add("Login", expectionLogin, actualLogin);
             softAssertions.AssertAll();
         }
@@ -199,15 +199,11 @@ namespace EpamCourseTests.Webdriver_Tests
                 webPages.GmailMailPage.Open();
                 Assert.Fail("The letter did not arrive");
             }
-            webPages.GmailMailPage.ReplyButton.Click();
-            webPages.GmailMailPage.MessageArea.SendKey(messageFromGoogle);
-            webPages.GmailMailPage.SendMessageButton.Click();
-
             softAssertions.AssertAll();
         }
 
         //считаю, что третий тест должен выглядеть так,
-        //с новой процедурой отправкой письма, ибо если
+        //с новой процедурой отправки письма, ибо если
         //делать как написано в задании, то он
         //становится зависимым от предыдущего
         [TestMethod]
@@ -260,14 +256,37 @@ namespace EpamCourseTests.Webdriver_Tests
             webPages.YandexPassportPage.ClearNameButton.Click();
             webPages.YandexPassportPage.NewNameArea.SendKey(newName);
             webPages.YandexPassportPage.SaveNewNameButton.Click();
+            new TestDataWriter().WriteNewUsername(newName);
             webPages.YandexMailPage.UserPicButton.Click();
             webPages.YandexMailPage.AccountManagmentButton.Click();
-            webPages.YandexIdPage.UserPicButton.Click();
-            string actualName = webPages.YandexIdPage.UsernameArea.GetText();
+            webPages.YandexIdPage.PersonalButton.Click();
 
-            softAssertions.Add("Name", messageFromGoogle, actualName);
+            string actualUsername = webPages.YandexIdPage.UsernameArea.GetText();
+            softAssertions.Add("Username", messageFromGoogle, actualUsername);
             softAssertions.AssertAll();
-            new TestDataWriter().WriteNewUsername(actualName);
         }
+
+        [TestMethod]
+        public void Username()
+        {
+            WebPages webPages = new WebPages();
+            SoftAssertions softAssertions = new SoftAssertions();
+            Users users = new TestDataReader().GetTestUsers();
+
+            webPages.YandexMainPage.Open();
+            webPages.YandexMainPage.LogInButton.Click();
+            webPages.YandexPassportPage.UserNameArea.SendKey(users.YandexMailData.Login);
+            webPages.YandexPassportPage.SubmitButton.Click();
+            webPages.YandexPassportPage.PasswordArea.SendKey(users.YandexMailData.Password);
+            webPages.YandexPassportPage.SubmitButton.Click();
+            webPages.YandexMainPage.UserPicButton.Click();
+            webPages.YandexMainPage.AccountManagmentButton.Click();
+            webPages.YandexIdPage.PersonalButton.Click();
+
+            string actualUsername = webPages.YandexIdPage.UsernameArea.GetText();
+            softAssertions.Add("Username", users.YandexMailData.Username, actualUsername);
+            softAssertions.AssertAll();
+        }
+
     }
 }
