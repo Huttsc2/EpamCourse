@@ -1,6 +1,6 @@
 ﻿namespace EpamCourse.Webdriver.Letter
 {
-    public class Letter
+    public class LetterObject
     {
         public string Recipient { get; set; }
         public string Subject { get; set; }

@@ -2,11 +2,11 @@
 {
     public class LetterBuilder
     {
-        private Letter _letter;
+        private LetterObject _letter;
 
         public LetterBuilder()
         {
-            _letter = new Letter();
+            _letter = new LetterObject();
         }
 
         public LetterBuilder SetSubject(string subject)
@@ -27,7 +27,7 @@
             return this;
         }
 
-        public Letter Build()
+        public LetterObject Build()
         {
             return _letter;
         }

@@ -1,7 +1,9 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using SeleniumExtras.WaitHelpers;
+using EpamCourse.Webdriver.UserData;
 
 namespace EpamCourse.Webdriver.Driver
 {
@@ -12,19 +14,39 @@ namespace EpamCourse.Webdriver.Driver
 
         private Browser()
         {
-            Driver = StartChromDriver();
+            BrowserType browserType = new WebDriverReader().GetBrowserType();
+
+            switch (browserType)
+            {
+                case BrowserType.Chrome:
+                    Driver = StartChromeDriver();
+                    break;
+                case BrowserType.Firefox:
+                    Driver = StartFirefoxDriver();
+                    break;
+                default:
+                    throw new ArgumentException($"Unsupported browser type: {browserType}");
+            }
             Driver.Manage().Window.Maximize();
             Driver.Manage().Cookies.DeleteAllCookies();
             Driver.Manage().Timeouts().PageLoad = new TimeSpan(0, 0, 60);
             Driver.Manage().Timeouts().AsynchronousJavaScript = new TimeSpan(0, 0, 60);
         }
 
-        private ChromeDriver StartChromDriver()
+        private ChromeDriver StartChromeDriver()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--disable-browsing-history");
             options.AddArgument("--incognito");
             return new ChromeDriver(options);
+        }
+
+        private FirefoxDriver StartFirefoxDriver()
+        {
+            FirefoxOptions options = new FirefoxOptions();
+            options.AddArgument("--disable-browsing-history");
+            options.AddArgument("--incognito");
+            return new FirefoxDriver(options);
         }
 
         public static Browser GetInstance()

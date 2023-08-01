@@ -5,6 +5,7 @@ using EpamCourse.Webdriver.UserData;
 using EpamCourse.Webdriver.SoftAssertions;
 using EpamCourse.Helpers;
 using EpamCourse.Webdriver.Letter;
+using EpamCourse.Webdriver.Steps;
 
 namespace EpamCourseTests.Webdriver_Tests
 {
@@ -26,20 +27,13 @@ namespace EpamCourseTests.Webdriver_Tests
         [TestMethod]
         public void Login()
         {
-            WebPages webPages = new WebPages();
             SoftAssertions softAssertions = new SoftAssertions();
-            Users users = new TestDataReader().GetTestUsers();
 
-            webPages.YandexMainPage.Open();
-            webPages.YandexMainPage.LogInButton.Click();
-            webPages.YandexPassportPage.UserNameArea.SendKey(users.YandexMailData.Login);
-            webPages.YandexPassportPage.SubmitButton.Click();
-            webPages.YandexPassportPage.PasswordArea.SendKey(users.YandexMailData.Password);
-            webPages.YandexPassportPage.SubmitButton.Click();
-            webPages.YandexMainPage.UserPicButton.Click();
+            new MailSteps().LoginYandexMail(new TestDataReader().GetTestUsers().YandexMailData);
+            new WebPages().YandexMainPage.UserPicButton.Click();
 
-            string actualLogin = webPages.YandexMainPage.UserName.GetText();
-            string expectionLogin = users.YandexMailData.Username;
+            string actualLogin = new WebPages().YandexMainPage.UserName.GetText();
+            string expectionLogin = new TestDataReader().GetTestUsers().YandexMailData.Username;
             softAssertions.Add("Login", expectionLogin, actualLogin);
             softAssertions.AssertAll();
         }
@@ -47,18 +41,19 @@ namespace EpamCourseTests.Webdriver_Tests
         [TestMethod]
         public void IncorrectUsernameLogin()
         {
-            WebPages webPages = new WebPages();
             SoftAssertions softAssertions = new SoftAssertions();
-            Users users = new TestDataReader().GetTestUsers();
 
-            webPages.YandexMainPage.Open();
-            webPages.YandexMainPage.LogInButton.Click();
-            webPages.YandexPassportPage.UserNameArea.SendKey(users.YandexMailData.Login + 
-                new RandomString().GetRandomString(8));
-            webPages.YandexPassportPage.SubmitButton.Click();
+            new WebPages().YandexMainPage.Open();
+            new WebPages().YandexMainPage.LogInButton.Click();
+            new WebPages().YandexPassportPage.UserNameArea.SendKey
+                (
+                new TestDataReader().GetTestUsers().YandexMailData.Login + 
+                new RandomString().GetRandomString(8)
+                );
+            new WebPages().YandexPassportPage.SubmitButton.Click();
             try
             {
-                string actualResult = webPages.YandexPassportPage.AlertArea.GetText();
+                string actualResult = new WebPages().YandexPassportPage.AlertArea.GetText();
                 string expectedResult = "Такого аккаунта нет";
                 softAssertions.Add("Alert", expectedResult, actualResult);
                 softAssertions.AssertAll();
@@ -72,19 +67,17 @@ namespace EpamCourseTests.Webdriver_Tests
         [TestMethod]
         public void IncorrectPasswordLogin()
         {
-            WebPages webPages = new WebPages();
             SoftAssertions softAssertions = new SoftAssertions();
-            Users users = new TestDataReader().GetTestUsers();
 
-            webPages.YandexMainPage.Open();
-            webPages.YandexMainPage.LogInButton.Click();
-            webPages.YandexPassportPage.UserNameArea.SendKey(users.YandexMailData.Login);
-            webPages.YandexPassportPage.SubmitButton.Click();
-            webPages.YandexPassportPage.PasswordArea.SendKey(new RandomString().GetRandomString(8));
-            webPages.YandexPassportPage.SubmitButton.Click();
+            new WebPages().YandexMainPage.Open();
+            new WebPages().YandexMainPage.LogInButton.Click();
+            new WebPages().YandexPassportPage.UserNameArea.SendKey(new TestDataReader().GetTestUsers().YandexMailData.Login);
+            new WebPages().YandexPassportPage.SubmitButton.Click();
+            new WebPages().YandexPassportPage.PasswordArea.SendKey(new RandomString().GetRandomString(8));
+            new WebPages().YandexPassportPage.SubmitButton.Click();
             try
             {
-                string actualResult = webPages.YandexPassportPage.AlertArea.GetText();
+                string actualResult = new WebPages().YandexPassportPage.AlertArea.GetText();
                 string expectedResult = "Неверный пароль";
                 softAssertions.Add("Alert", expectedResult, actualResult);
                 softAssertions.AssertAll();
@@ -98,15 +91,14 @@ namespace EpamCourseTests.Webdriver_Tests
         [TestMethod]
         public void EmptyUsernameLogin()
         {
-            WebPages webPages = new WebPages();
             SoftAssertions softAssertions = new SoftAssertions();
 
-            webPages.YandexMainPage.Open();
-            webPages.YandexMainPage.LogInButton.Click();
-            webPages.YandexPassportPage.SubmitButton.Click();
+            new WebPages().YandexMainPage.Open();
+            new WebPages().YandexMainPage.LogInButton.Click();
+            new WebPages().YandexPassportPage.SubmitButton.Click();
             try
             {
-                string actualResult = webPages.YandexPassportPage.AlertArea.GetText();
+                string actualResult = new WebPages().YandexPassportPage.AlertArea.GetText();
                 string expectedResult = "Логин не указан";
                 softAssertions.Add("Alert", expectedResult, actualResult);
                 softAssertions.AssertAll();
@@ -120,18 +112,16 @@ namespace EpamCourseTests.Webdriver_Tests
         [TestMethod]
         public void EmptyPasswordLogin()
         {
-            WebPages webPages = new WebPages();
             SoftAssertions softAssertions = new SoftAssertions();
-            Users users = new TestDataReader().GetTestUsers();
 
-            webPages.YandexMainPage.Open();
-            webPages.YandexMainPage.LogInButton.Click();
-            webPages.YandexPassportPage.UserNameArea.SendKey(users.YandexMailData.Login);
-            webPages.YandexPassportPage.SubmitButton.Click();
-            webPages.YandexPassportPage.SubmitButton.Click();
+            new WebPages().YandexMainPage.Open();
+            new WebPages().YandexMainPage.LogInButton.Click();
+            new WebPages().YandexPassportPage.UserNameArea.SendKey(new TestDataReader().GetTestUsers().YandexMailData.Login);
+            new WebPages().YandexPassportPage.SubmitButton.Click();
+            new WebPages().YandexPassportPage.SubmitButton.Click();
             try
             {
-                string actualResult = webPages.YandexPassportPage.AlertArea.GetText();
+                string actualResult = new WebPages().YandexPassportPage.AlertArea.GetText();
                 string expectedResult = "Пароль не указан";
                 softAssertions.Add("Alert", expectedResult, actualResult);
                 softAssertions.AssertAll();
@@ -143,60 +133,40 @@ namespace EpamCourseTests.Webdriver_Tests
         }
 
         [TestMethod]
-        public void SendLetterAndReply()
+        public void SendLetter()
         {
-            WebPages webPages = new WebPages();
             SoftAssertions softAssertions = new SoftAssertions();
-            Users users = new TestDataReader().GetTestUsers();
-            string messageFromYandex = new RandomString().GetRandomString();
-            string subjectFromYandex = new RandomString().GetRandomString();
-            string messageFromGoogle = new RandomString().GetRandomString();
-            Letter letterFromYandex = new LetterBuilder()
-                .SetRecipient(users.GoogleMailData.Email)
-                .SetMessage(messageFromYandex)
-                .SetSubject(subjectFromYandex)
-                .Build();
+            LetterObject letterFromYandex = new LetterCreater
+                (
+                new TestDataReader().GetTestUsers().GoogleMailData.Email
+                )
+                .GetLetter();
 
-            webPages.YandexMainPage.Open();
-            webPages.YandexMainPage.LogInButton.Click();
-            webPages.YandexPassportPage.UserNameArea.SendKey(users.YandexMailData.Login);
-            webPages.YandexPassportPage.SubmitButton.Click();
-            webPages.YandexPassportPage.PasswordArea.SendKey(users.YandexMailData.Password);
-            webPages.YandexPassportPage.SubmitButton.Click();
-            webPages.YandexMainPage.UserPicButton.Click();
-            webPages.YandexMainPage.OpenMailButton.Click();
-            webPages.YandexMailPage.WriteLetterButton.Click();
-            webPages.YandexMailPage.LetterRecipientArea.SendKey(letterFromYandex.Recipient);
-            webPages.YandexMailPage.SubjectArea.SendKey(letterFromYandex.Subject);
-            webPages.YandexMailPage.MessageArea.SendKey(letterFromYandex.Message);
-            webPages.YandexMailPage.SendMessageButton.Click();
+            new MailSteps().LoginYandexMail(new TestDataReader().GetTestUsers().YandexMailData);
+            new MailSteps().OpenYandexMailbox();
+            new MailSteps().SendLetterFromYandx(letterFromYandex);
             Thread.Sleep(1000);//костыль, пока не разобрался как обработать всплывающий Alert
-            webPages.GmailMainPage.Open();
-            webPages.GmailMainPage.SignInButton.Click();
-            webPages.GmailPassportPage.EmailOrPhoneArea.SendKey(users.GoogleMailData.Email);
-            webPages.GmailPassportPage.NextButton.Click();
-            webPages.GmailPassportPage.PasswordArea.SendKey(users.GoogleMailData.Password);
-            webPages.GmailPassportPage.NextButton.Click();
-            webPages.GmailMainPage.OpenMailButton.Click();
+            new MailSteps().LoginGmail(new TestDataReader().GetTestUsers().GoogleMailData);
+            new MailSteps().OpenGoogleMailbox();
             try
             {
-                webPages.GmailMailPage.UnreadLetterBySubject(letterFromYandex.Subject).Click();
-                string actualSender = webPages.GmailMailPage.OpenedLetterSenderArea.GetText();
-                string actualMessage = webPages.GmailMailPage.OpenedLetterMessageArea.GetText();
-                string actualSubject = webPages.GmailMailPage.OpenedLetterSubjectArea.GetText();
-                softAssertions.Add("Sender", users.YandexMailData.Name, actualSender);
+                new WebPages().GmailMailPage.UnreadLetterBySubject(letterFromYandex.Subject).Click();
+                string actualSender = new WebPages().GmailMailPage.OpenedLetterSenderArea.GetText();
+                string actualMessage = new WebPages().GmailMailPage.OpenedLetterMessageArea.GetText();
+                string actualSubject = new WebPages().GmailMailPage.OpenedLetterSubjectArea.GetText();
+                softAssertions.Add("Sender", new TestDataReader().GetTestUsers().YandexMailData.Name, actualSender);
                 softAssertions.Add("Message", letterFromYandex.Message, actualMessage);
                 softAssertions.Add("Subject", letterFromYandex.Subject, actualSubject);
             }
             catch (Exception)
             {
-                webPages.GmailMailPage.Open();
-                webPages.GmailMailPage.LetterBySubject(letterFromYandex.Subject).Click();
+                new WebPages().GmailMailPage.Open();
+                new WebPages().GmailMailPage.LetterBySubject(letterFromYandex.Subject).Click();
                 Assert.Fail("Email is not marked as unread");
             }
             catch
             {
-                webPages.GmailMailPage.Open();
+                new WebPages().GmailMailPage.Open();
                 Assert.Fail("The letter did not arrive");
             }
             softAssertions.AssertAll();
@@ -209,59 +179,40 @@ namespace EpamCourseTests.Webdriver_Tests
         [TestMethod]
         public void ReadLetterAndChangeName()
         {
-            WebPages webPages = new WebPages();
             SoftAssertions softAssertions = new SoftAssertions();
-            Users users = new TestDataReader().GetTestUsers();
-            string messageFromYandex = new RandomString().GetRandomString();
-            string subjectFromYandex = new RandomString().GetRandomString();
+            LetterObject letterFromYandex = new LetterCreater
+                (
+                new TestDataReader().GetTestUsers().GoogleMailData.Email
+                )
+                .GetLetter();
             string messageFromGoogle = new RandomString().GetRandomString();
-            Letter letterFromYandex = new LetterBuilder()
-                .SetRecipient(users.GoogleMailData.Email)
-                .SetMessage(messageFromYandex)
-                .SetSubject(subjectFromYandex)
-                .Build();
 
-            webPages.YandexMainPage.Open();
-            webPages.YandexMainPage.LogInButton.Click();
-            webPages.YandexPassportPage.UserNameArea.SendKey(users.YandexMailData.Login);
-            webPages.YandexPassportPage.SubmitButton.Click();
-            webPages.YandexPassportPage.PasswordArea.SendKey(users.YandexMailData.Password);
-            webPages.YandexPassportPage.SubmitButton.Click();
-            webPages.YandexMainPage.UserPicButton.Click();
-            webPages.YandexMainPage.OpenMailButton.Click();
-            webPages.YandexMailPage.WriteLetterButton.Click();
-            webPages.YandexMailPage.LetterRecipientArea.SendKey(letterFromYandex.Recipient);
-            webPages.YandexMailPage.SubjectArea.SendKey(letterFromYandex.Subject);
-            webPages.YandexMailPage.MessageArea.SendKey(letterFromYandex.Message);
-            webPages.YandexMailPage.SendMessageButton.Click();
+            new MailSteps().LoginYandexMail(new TestDataReader().GetTestUsers().YandexMailData);
+            new MailSteps().OpenYandexMailbox();
+            new MailSteps().SendLetterFromYandx(letterFromYandex);
             Thread.Sleep(1000);//костыль, пока не разобрался как обработать всплывающий Alert
-            webPages.GmailMainPage.Open();
-            webPages.GmailMainPage.SignInButton.Click();
-            webPages.GmailPassportPage.EmailOrPhoneArea.SendKey(users.GoogleMailData.Email);
-            webPages.GmailPassportPage.NextButton.Click();
-            webPages.GmailPassportPage.PasswordArea.SendKey(users.GoogleMailData.Password);
-            webPages.GmailPassportPage.NextButton.Click();
-            webPages.GmailMainPage.OpenMailButton.Click();
-            webPages.GmailMailPage.LetterBySubject(letterFromYandex.Subject).Click();
-            webPages.GmailMailPage.ReplyButton.Click();
-            webPages.GmailMailPage.MessageArea.SendKey(messageFromGoogle);
-            webPages.GmailMailPage.SendMessageButton.Click();
+            new MailSteps().LoginGmail(new TestDataReader().GetTestUsers().GoogleMailData);
+            new MailSteps().OpenGoogleMailbox();
+            new WebPages().GmailMailPage.LetterBySubject(letterFromYandex.Subject).Click();
+            new WebPages().GmailMailPage.ReplyButton.Click();
+            new WebPages().GmailMailPage.MessageArea.SendKey(messageFromGoogle);
+            new WebPages().GmailMailPage.SendMessageButton.Click();
             Thread.Sleep(2000);//костыль, пока не разобрался как обработать всплывающий Alert
-            webPages.YandexMailPage.Open();
-            webPages.YandexMailPage.LetterBySubject(subjectFromYandex).Click();
-            webPages.YandexMailPage.LetterByMessageInReply(messageFromGoogle).Click();
-            string newName = webPages.YandexMailPage.ReplyedLetterMessage(messageFromGoogle).GetText();
-            webPages.YandexMailPage.UserPicButton.Click();
-            webPages.YandexMailPage.UserPicButtonGoToSetting.Click();
-            webPages.YandexPassportPage.ClearNameButton.Click();
-            webPages.YandexPassportPage.NewNameArea.SendKey(newName);
-            webPages.YandexPassportPage.SaveNewNameButton.Click();
+            new WebPages().YandexMailPage.Open();
+            new WebPages().YandexMailPage.LetterBySubject(letterFromYandex.Subject).Click();
+            new WebPages().YandexMailPage.LetterByMessageInReply(messageFromGoogle).Click();
+            string newName = new WebPages().YandexMailPage.ReplyedLetterMessage(messageFromGoogle).GetText();
+            new WebPages().YandexMailPage.UserPicButton.Click();
+            new WebPages().YandexMailPage.UserPicButtonGoToSetting.Click();
+            new WebPages().YandexPassportPage.ClearNameButton.Click();
+            new WebPages().YandexPassportPage.NewNameArea.SendKey(newName);
+            new WebPages().YandexPassportPage.SaveNewNameButton.Click();
             new TestDataWriter().WriteNewUsername(newName);
-            webPages.YandexMailPage.UserPicButton.Click();
-            webPages.YandexMailPage.AccountManagmentButton.Click();
-            webPages.YandexIdPage.PersonalButton.Click();
+            new WebPages().YandexMailPage.UserPicButton.Click();
+            new WebPages().YandexMailPage.AccountManagmentButton.Click();
+            new WebPages().YandexIdPage.PersonalButton.Click();
 
-            string actualUsername = webPages.YandexIdPage.UsernameArea.GetText();
+            string actualUsername = new WebPages().YandexIdPage.UsernameArea.GetText();
             softAssertions.Add("Username", messageFromGoogle, actualUsername);
             softAssertions.AssertAll();
         }
@@ -269,22 +220,15 @@ namespace EpamCourseTests.Webdriver_Tests
         [TestMethod]
         public void Username()
         {
-            WebPages webPages = new WebPages();
             SoftAssertions softAssertions = new SoftAssertions();
-            Users users = new TestDataReader().GetTestUsers();
 
-            webPages.YandexMainPage.Open();
-            webPages.YandexMainPage.LogInButton.Click();
-            webPages.YandexPassportPage.UserNameArea.SendKey(users.YandexMailData.Login);
-            webPages.YandexPassportPage.SubmitButton.Click();
-            webPages.YandexPassportPage.PasswordArea.SendKey(users.YandexMailData.Password);
-            webPages.YandexPassportPage.SubmitButton.Click();
-            webPages.YandexMainPage.UserPicButton.Click();
-            webPages.YandexMainPage.AccountManagmentButton.Click();
-            webPages.YandexIdPage.PersonalButton.Click();
+            new MailSteps().LoginYandexMail(new TestDataReader().GetTestUsers().YandexMailData);
+            new WebPages().YandexMainPage.UserPicButton.Click();
+            new WebPages().YandexMainPage.AccountManagmentButton.Click();
+            new WebPages().YandexIdPage.PersonalButton.Click();
 
-            string actualUsername = webPages.YandexIdPage.UsernameArea.GetText();
-            softAssertions.Add("Username", users.YandexMailData.Username, actualUsername);
+            string actualUsername = new WebPages().YandexIdPage.UsernameArea.GetText();
+            softAssertions.Add("Username", new TestDataReader().GetTestUsers().YandexMailData.Username, actualUsername);
             softAssertions.AssertAll();
         }
 
