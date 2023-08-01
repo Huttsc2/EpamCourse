@@ -31,4 +31,8 @@
     <ProjectReference Include="..\EpamCourse\EpamCourse.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Webdriver Tests\Screenshots\" />
+  </ItemGroup>
+
 </Project>

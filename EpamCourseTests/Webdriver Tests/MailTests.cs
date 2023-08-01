@@ -12,6 +12,8 @@ namespace EpamCourseTests.Webdriver_Tests
     [TestClass]
     public class MailTests
     {
+        public TestContext TestContext { get; set; }
+
         [TestInitialize]
         public void Setup()
         {
@@ -21,6 +23,10 @@ namespace EpamCourseTests.Webdriver_Tests
         [TestCleanup]
         public void CleanUp()
         {
+            if (TestContext.CurrentTestOutcome != UnitTestOutcome.Passed)
+            {
+                Browser.GetInstance().TakeScreenshotOnFailure();
+            }
             Browser.GetInstance().Quit();
         }
 

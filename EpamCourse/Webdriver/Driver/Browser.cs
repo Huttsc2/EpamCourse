@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using SeleniumExtras.WaitHelpers;
 using EpamCourse.Webdriver.UserData;
+using EpamCourse.Helpers;
 
 namespace EpamCourse.Webdriver.Driver
 {
@@ -179,6 +180,22 @@ namespace EpamCourse.Webdriver.Driver
                 return null;
             }
             return elements;
+        }
+
+        public void TakeScreenshotOnFailure()
+        {
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd-hhmm-ss");
+            string path = new PathToScreenshots().GetPathToScreenshots();
+            try
+            {
+                ITakesScreenshot screenshotDriver = Driver as ITakesScreenshot;
+                Screenshot screenshot = screenshotDriver.GetScreenshot();
+                screenshot.SaveAsFile($"{path}/screenshot-{timestamp}.png", ScreenshotImageFormat.Png);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Failed to take screenshot: {e.Message}");
+            }
         }
 
         public void Refresh()
